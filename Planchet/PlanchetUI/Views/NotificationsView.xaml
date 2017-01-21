@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="PlanchetUI.Views.NotificationsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:rec="clr-namespace:I18N.Resources.PlanchetUI;assembly=I18N.Resources"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:PlanchetUI.Views.Notifications"
+             xmlns:vm="clr-namespace:PlanchetUI.ViewModels.Notifications"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Templates/Templates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type vm:NotificationBaseVM}">
+                <views:NotificationBaseView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:MessageNotificationVM}">
+                <views:MessageNotificationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SocketNotificationVM}">
+                <views:SocketNotificationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SettingsNotificationVM}">
+                <views:SettingsNotificationView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="{x:Static rec:Notifications.NotificationType}" VerticalAlignment="Center" Margin="5"/>
+        <ComboBox x:Name="comboxTypes" DisplayMemberPath="Name" ItemsSource="{Binding NotificationTypes,UpdateSourceTrigger=PropertyChanged,Mode=OneWay}" Grid.Column="1">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding ChangeView}" CommandParameter="{Binding ElementName=comboxTypes,Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
+        
+        <Separator Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
+        <Frame Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" Content="{Binding CurrentNotificationViewModel,UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+            <Button Content="{x:Static rec:Notifications.Send}" Command="{Binding SendNotificationCommand}" HorizontalAlignment="Right" Width="80"/>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,77 @@
+﻿<Window x:Class="PlanchetUI.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:PlanchetUI.Converters"
+        xmlns:vm="clr-namespace:PlanchetUI.ViewModels"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:views="clr-namespace:PlanchetUI.Views"
+        xmlns:rec="clr-namespace:I18N.Resources.PlanchetUI;assembly=I18N.Resources"
+        Title="MainWindow" Height="400" Width="400" MinWidth="400">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Templates/Templates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type vm:ScreenshotVM}">
+                <views:ScreenshotView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:WebcamVM}">
+                <views:WebcamView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:NotificationsVM}">
+                <views:NotificationsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SocketVM}">
+                <views:SocketView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SettingsVM}">
+                <views:SettingsView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TabControl>
+            <TabItem Header="{x:Static rec:MainWindow.WebcamImages}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding ChangeView}" CommandParameter="{x:Type vm:WebcamVM}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TabItem>
+            <TabItem Header="{x:Static rec:MainWindow.ScreenshotImages}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding ChangeView}" CommandParameter="{x:Type vm:ScreenshotVM}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TabItem>
+            <TabItem Header="{x:Static rec:MainWindow.Settings}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding ChangeView}" CommandParameter="{x:Type vm:SettingsVM}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TabItem>
+            <TabItem Header="{x:Static rec:MainWindow.Notifications}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding ChangeView}" CommandParameter="{x:Type vm:NotificationsVM}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TabItem>
+            <TabItem Header="{x:Static rec:MainWindow.RemoteVisualization}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding ChangeView}" CommandParameter="{x:Type vm:SocketVM}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TabItem>
+        </TabControl>
+        <Frame Margin="10" Content="{Binding CurrentViewModel,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3" Grid.RowSpan="12" Grid.ColumnSpan="3"/>
+    </Grid>
+</Window>

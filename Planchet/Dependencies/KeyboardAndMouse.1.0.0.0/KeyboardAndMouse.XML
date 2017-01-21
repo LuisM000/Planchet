@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KeyboardAndMouse</name>
+    </assembly>
+    <members>
+        <member name="T:KeyboardAndMouse.Common.Common">
+            <summary>
+            Clase común para ejecutar funciones de ratón y teclado
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Common.Common.commonEvent(System.Collections.Generic.List{KeyboardAndMouse.Mouse.MouseData},System.Collections.Generic.List{KeyboardAndMouse.Keyboard.KeyboardData})">
+            <summary>
+            Reproduce los datos enviados de teclado/ratón
+            </summary>
+            <param name="mouseData">Datos de ratón</param>
+            <param name="keyboardData">Datos de teclado</param>
+        </member>
+        <member name="M:KeyboardAndMouse.Common.Common.commonEvent(System.Collections.Generic.List{KeyboardAndMouse.Common.Data})">
+            <summary>
+            Reproduce los datos enviados de teclado/ratón
+            </summary>
+            <param name="data">Datos de teclado/ratón a reproducir</param>
+        </member>
+        <member name="E:KeyboardAndMouse.Common.Common.CommonEventChanged">
+            <summary>
+            Notifica la acción de teclado/ratón, una vez llamada al método commonEvent
+            </summary>
+        </member>
+        <member name="T:KeyboardAndMouse.Common.Common.EventHandler">
+            <summary>
+            Delegado de CommonEventChanged
+            </summary>
+            <param name="value">Dato de ratón/teclado</param>
+        </member>
+        <member name="T:KeyboardAndMouse.Common.Data">
+            <summary>
+            Datos de teclado y ratón
+            </summary>
+        </member>
+        <member name="T:KeyboardAndMouse.Keyboard.KeyboardActions">
+            <summary>
+            Acciones de teclado
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Keyboard.KeyboardActions.#ctor">
+            <summary>
+            Constructor. Inicializa con RegisterLastAction=false, y RegisterActions=false
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Keyboard.KeyboardActions.initialize">
+            <summary>
+            NECESARIO INICIALIZARLO EN EL PUNTO DE ENTRADA DE LA APLICACIÓN
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Keyboard.KeyboardActions.start">
+            <summary>
+            Empieza a grabar las acciones de teclado del usuario
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Keyboard.KeyboardActions.stop">
+            <summary>
+            Para de grabar las acciones de teclado de usuario
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Keyboard.KeyboardActions.resume">
+            <summary>
+            Continua la grabación iniciada por start()
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Keyboard.KeyboardActions.reboot">
+            <summary>
+            Reinicia LastAction y Actions
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Keyboard.KeyboardActions.keyboardEvent(System.Collections.Generic.List{KeyboardAndMouse.Keyboard.KeyboardData})">
+            <summary>
+            Ejecuta las acciones de teclado enviadas
+            </summary>
+            <param name="values">Datos de teclado a ejecutar</param>
+        </member>
+        <member name="M:KeyboardAndMouse.Keyboard.KeyboardActions.keyboardEvent(KeyboardAndMouse.Keyboard.KeyboardData)">
+            <summary>
+            Ejecuta la acción de teclado enviadas
+            </summary>
+            <param name="value">Dato de teclado a ejecutar</param>
+        </member>
+        <member name="M:KeyboardAndMouse.Keyboard.KeyboardActions.Keyboard_KeyChanged(KeyboardAndMouse.Keyboard.KeyboardData)">
+            <summary>
+            Notifica los datos que se van registrando del teclado de usuario (posterior a llamada start()). Es necesario que RegisterLastAction sea True
+            </summary>
+            <param name="value">Valor de teclado</param>
+        </member>
+        <member name="M:KeyboardAndMouse.Keyboard.KeyboardActions.Keyboard_KeyEventChanged(KeyboardAndMouse.Keyboard.KeyboardData)">
+            <summary>
+            Notifica los datos que se van ejecutando una vez llamado al método keyboardEvent
+            </summary>
+            <param name="value">Valor de teclado</param>
+        </member>
+        <member name="E:KeyboardAndMouse.Keyboard.KeyboardActions.KeyboardChanged">
+            <summary>
+            Notifica cuando el usuario utiliza el teclado
+            </summary>
+        </member>
+        <member name="E:KeyboardAndMouse.Keyboard.KeyboardActions.KeyboardEventChanged">
+            <summary>
+            Notifica cuando, una vez llamado al método keyboardEvent, se va realizando acciones de teclado
+            </summary>
+        </member>
+        <member name="P:KeyboardAndMouse.Keyboard.KeyboardActions.RegisterLastAction">
+            <summary>
+            Si es True, registra la última acción realizada por el usuario
+            </summary>
+        </member>
+        <member name="P:KeyboardAndMouse.Keyboard.KeyboardActions.RegisterActions">
+            <summary>
+            Si es True, registra el listado de acciones realizadas por el usuario
+            </summary>
+        </member>
+        <member name="P:KeyboardAndMouse.Keyboard.KeyboardActions.Actions">
+            <summary>
+            Listado de acciones realizadas por el usuario
+            </summary>
+        </member>
+        <member name="P:KeyboardAndMouse.Keyboard.KeyboardActions.LastAction">
+            <summary>
+            Última acción realizada por el usuario
+            </summary>
+        </member>
+        <member name="T:KeyboardAndMouse.Keyboard.KeyboardActions.EventHandler">
+            <summary>
+            Delegado de KeyboardChanged y KeyboardEventChanged
+            </summary>
+            <param name="value">Datos de teclado</param>
+        </member>
+        <member name="T:KeyboardAndMouse.Keyboard.KeyboardData">
+            <summary>
+            Datos de teclado
+            </summary>
+        </member>
+        <member name="T:KeyboardAndMouse.Mouse.MouseActions">
+            <summary>
+            Acciones de ratón
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Mouse.MouseActions.#ctor">
+            <summary>
+            Constructor. Inicializa con RegisterLastAction=false, y RegisterActions=false
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Mouse.MouseActions.initialize">
+            <summary>
+            NECESARIO INICIALIZARLO EN EL PUNTO DE ENTRADA DE LA APLICACIÓN
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Mouse.MouseActions.start">
+            <summary>
+             Empieza a grabar las acciones de ratón del usuario
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Mouse.MouseActions.stop">
+            <summary>
+             Para de grabar las acciones de ratón de usuario
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Mouse.MouseActions.resume">
+            <summary>
+            Continua la grabación iniciada por start()
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Mouse.MouseActions.reboot">
+            <summary>
+            Reinicia LastAction y Actions
+            </summary>
+        </member>
+        <member name="M:KeyboardAndMouse.Mouse.MouseActions.mouseEvent(System.Collections.Generic.List{KeyboardAndMouse.Mouse.MouseData})">
+            <summary>
+            Ejecuta las acciones de ratón enviadas
+            </summary>
+            <param name="values">Datos de ratón a ejecutar</param>
+        </member>
+        <member name="M:KeyboardAndMouse.Mouse.MouseActions.mouseEvent(KeyboardAndMouse.Mouse.MouseData)">
+            <summary>
+             Ejecuta la acción de ratón enviadas
+            </summary>
+            <param name="value">Dato de ratón a ejecutar</param>
+        </member>
+        <member name="M:KeyboardAndMouse.Mouse.MouseActions.Mouse_MouseChanged(KeyboardAndMouse.Mouse.MouseData)">
+            <summary>
+            Notifica los datos que se van registrando del ratón de usuario (posterior a llamada start()). Es necesario que RegisterLastAction sea True
+            </summary>
+            <param name="value">Valor de ratón</param>
+        </member>
+        <member name="M:KeyboardAndMouse.Mouse.MouseActions.Mouse_MouseEventChanged(KeyboardAndMouse.Mouse.MouseData)">
+            <summary>
+            Notifica los datos que se van ejecutando una vez llamado al método mouseEvent
+            </summary>
+            <param name="value">Valor de ratón</param>
+        </member>
+        <member name="E:KeyboardAndMouse.Mouse.MouseActions.MouseChanged">
+            <summary>
+            Notifica cuando el usuario utiliza el ratón
+            </summary>
+        </member>
+        <member name="E:KeyboardAndMouse.Mouse.MouseActions.MouseEventChanged">
+            <summary>
+            Notifica cuando, una vez llamado al método mouseEvent, se va realizando acciones de ratón
+            </summary>
+        </member>
+        <member name="P:KeyboardAndMouse.Mouse.MouseActions.RegisterLastAction">
+            <summary>
+             Si es True, registra la última acción realizada por el usuario
+            </summary>
+        </member>
+        <member name="P:KeyboardAndMouse.Mouse.MouseActions.RegisterActions">
+            <summary>
+            Si es True, registra el listado de acciones realizadas por el usuario
+            </summary>
+        </member>
+        <member name="P:KeyboardAndMouse.Mouse.MouseActions.Actions">
+            <summary>
+            Listado de acciones realizadas por el usuario
+            </summary>
+        </member>
+        <member name="P:KeyboardAndMouse.Mouse.MouseActions.LastAction">
+            <summary>
+             Última acción realizada por el usuario
+            </summary>
+        </member>
+        <member name="T:KeyboardAndMouse.Mouse.MouseActions.EventHandler">
+            <summary>
+            Delegado de MouseChanged y MouseEventChanged
+            </summary>
+            <param name="value">Datos de ratón</param>
+        </member>
+        <member name="T:KeyboardAndMouse.Mouse.MouseData">
+            <summary>
+            Datos de ratón
+            </summary>
+        </member>
+    </members>
+</doc>
